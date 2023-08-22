@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.scss';
+import MenuBar from "./components/MenuBar/MenuBar";
 
 function App() {
   return (
-    <>
-      setup
-    </>
+    <div className="main-dictionary-container">
+        <MenuBar />
+    </div>
   );
 }
 
