@@ -1,1 +1,10 @@
+@import './variables/variables.scss';
 
+.main-dictionary-container {
+  width: 50%;
+  margin: 0 auto;
+  @media (max-width: $small-screen) {
+    width: 100%;
+    padding: 1rem;
+  }
+}
