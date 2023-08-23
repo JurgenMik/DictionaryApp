@@ -63,10 +63,17 @@
           border-radius: 50%;
         }
       }
-      #moon {
-        color: $DarkGray;
+      .moon {
         font-size: 1.5rem;
         margin-left: 1.5rem;
+      }
+      #moon-light {
+        color: $DarkGray;
+        @extend .moon;
+      }
+      #moon-dark {
+        color: $DarkPurple;
+        @extend .moon;
       }
     }
 }

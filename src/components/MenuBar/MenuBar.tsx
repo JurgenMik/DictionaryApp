@@ -2,18 +2,24 @@ import React from 'react';
 import './MenuBar.scss';
 import Select from 'react-select';
 import {IoMoonOutline} from 'react-icons/io5';
-import {selectFontOptions, selectStyles} from "../../utils/select";
+import {selectFontOptions, handleSelectStyles} from "../../utils/select";
 import Logo from '../assets/logo.svg';
 
 interface Props {
     font: string,
-    setFontType: (font: string) => void
+    setFontType: (font: string) => void,
+    isThemeDark: boolean,
+    setTheme: (isThemeLight: boolean) => void
 }
 
-function MenuBar({font, setFontType}: Props) {
+function MenuBar({font, setFontType, isThemeDark, setTheme}: Props) {
 
     const handleFontTypeChange = (selected: string) => {
         setFontType(selected);
+    }
+
+    const handleToggleTheme = () => {
+        setTheme(!isThemeDark);
     }
 
     return (
@@ -28,7 +34,7 @@ function MenuBar({font, setFontType}: Props) {
                 <Select
                     isSearchable={false}
                     name="font"
-                    styles={selectStyles}
+                    styles={handleSelectStyles(isThemeDark)}
                     options={selectFontOptions}
                     value={selectFontOptions.find((option) =>
                         option.value === font)}
@@ -41,10 +47,15 @@ function MenuBar({font, setFontType}: Props) {
                         <input
                             type="checkbox"
                             name="theme_switch"
+                            checked={isThemeDark}
+                            onChange={handleToggleTheme}
                         />
                         <span className="slider round" />
                     </label>
-                    <IoMoonOutline id="moon" />
+                    <IoMoonOutline
+                        className="moon"
+                        id={isThemeDark ? 'moon-dark' : 'moon-light'}
+                    />
                 </div>
             </div>
         </div>
