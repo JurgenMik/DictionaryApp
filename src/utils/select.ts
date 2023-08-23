@@ -4,11 +4,11 @@ export const selectFontOptions = [
         label: 'Serif'
     },
     {
-        value: 'Sans Serif',
+        value: 'Sans-Serif',
         label: 'Sans Serif'
     },
     {
-        value: 'Mono',
+        value: 'Monospace',
         label: 'Mono'
     }
 ];
@@ -16,6 +16,7 @@ export const selectFontOptions = [
 export const selectStyles = {
     control: (provided: any) => ({
         ...provided,
+        width: '9rem',
         marginRight: '1rem',
         overflowX: 'none',
         border: 'none',

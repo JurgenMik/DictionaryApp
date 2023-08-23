@@ -5,7 +5,17 @@ import {IoMoonOutline} from 'react-icons/io5';
 import {selectFontOptions, selectStyles} from "../../utils/select";
 import Logo from '../assets/logo.svg';
 
-function MenuBar() {
+interface Props {
+    font: string,
+    setFontType: (font: string) => void
+}
+
+function MenuBar({font, setFontType}: Props) {
+
+    const handleFontTypeChange = (selected: string) => {
+        setFontType(selected);
+    }
+
     return (
         <div className="d-flex align-items-center menu">
             <div className="w-25">
@@ -20,6 +30,11 @@ function MenuBar() {
                     name="font"
                     styles={selectStyles}
                     options={selectFontOptions}
+                    value={selectFontOptions.find((option) =>
+                        option.value === font)}
+                    onChange={(e: any) =>
+                        handleFontTypeChange(e.value)
+                    }
                 />
                 <div className="d-flex align-items-center theme">
                     <label className="theme-switch">
