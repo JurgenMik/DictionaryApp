@@ -1,7 +1,8 @@
 import React from 'react';
 import './MenuBar.scss';
+import Select from 'react-select';
 import {IoMoonOutline} from 'react-icons/io5';
-import {selectFontOptions} from "../../utils/select";
+import {selectFontOptions, selectStyles} from "../../utils/select";
 import Logo from '../assets/logo.svg';
 
 function MenuBar() {
@@ -14,13 +15,12 @@ function MenuBar() {
                 />
             </div>
             <div className="w-75 d-flex justify-content-end">
-                <select>
-                    {selectFontOptions.map((option) => (
-                        <option value={option.value} key={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
+                <Select
+                    isSearchable={false}
+                    name="font"
+                    styles={selectStyles}
+                    options={selectFontOptions}
+                />
                 <div className="d-flex align-items-center theme">
                     <label className="theme-switch">
                         <input
