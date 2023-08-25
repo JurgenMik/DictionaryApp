@@ -7,4 +7,34 @@
     width: 100%;
     padding: 1rem;
   }
+  form {
+    position: relative;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    input {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 1rem;
+      border: none;
+      font-weight: bold;
+      background: $VeryLightGray;
+      &:focus {
+        outline: 1px solid $DarkPurple;
+      }
+    }
+    .field-dark {
+      color: $White;
+      background: $DarkCharcoal;
+      &::placeholder {
+        color: white;
+      }
+    }
+    #search-icon {
+      position: absolute;
+      right: 2rem;
+      font-size: 1.35rem;
+      color: $DarkPurple;
+    }
+  }
 }
