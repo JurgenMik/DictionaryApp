@@ -10,6 +10,7 @@ function App() {
     const [font, setFontType] = useState<string>('Sans-Serif');
     const [isThemeDark, setTheme] = useState<boolean>(false);
     const [search, setSearch] = useState<string>('');
+    const [isFormError, setFormError] = useState<boolean>(false);
     const [searchResult, setResult] = useState<unknown>();
 
     const dictionaryUrl = `${process.env.REACT_APP_GET_DEFINITION}/${search}`;
@@ -22,8 +23,14 @@ function App() {
         try {
             e.preventDefault();
 
+            if (!search) {
+                return setFormError(true);
+            }
+
             const dictionaryResponse = await handleGetDictionaryResponse(dictionaryUrl);
             setResult(dictionaryResponse);
+
+            setFormError(false);
         } catch (error) {
 
             if (error instanceof AxiosError) {
@@ -57,6 +64,7 @@ function App() {
             <input
                 name="search"
                 type="text"
+                style={{border: isFormError ? '1px solid red' : 'none'}}
                 placeholder="Search for any word..."
                 className={isThemeDark ? 'field-dark' : ''}
                 onChange={(e) =>
@@ -67,6 +75,11 @@ function App() {
                 id="search-icon"
                 type="submit"
             />
+            {isFormError &&
+                <span>
+                    Whoops, can't be empty...
+                </span>
+            }
         </form>
     </div>
   );
