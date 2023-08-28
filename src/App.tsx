@@ -3,7 +3,14 @@ import './App.scss';
 import {BiSearch} from 'react-icons/bi';
 import {handleGetDictionaryResponse} from "./services/dictionaryService";
 import {AxiosError} from 'axios';
+import Emoji from 'react-emoji-render';
 import MenuBar from "./components/MenuBar/MenuBar";
+
+type SearchErrorType = {
+    title: string,
+    message: string,
+    resolution: string
+}
 
 function App() {
 
@@ -36,6 +43,8 @@ function App() {
             if (error instanceof AxiosError) {
                 const requestError = error.response?.data;
                 setResult(requestError);
+
+                setFormError(false);
             } else {
                 console.log('Error trying to request search definition:', error);
             }
@@ -51,6 +60,31 @@ function App() {
     useEffect(() => {
         handleApplicationThemeChange();
     }, [isThemeDark])
+
+    const renderResultSuccess = () => {
+        return (
+            <div className="result-success"></div>
+        )
+    }
+
+    const renderResultError = () => {
+        const searchResultError = searchResult as SearchErrorType;
+        return (
+            <div className="d-flex flex-column align-items-center result-error">
+                <Emoji
+                    text=":slightly_frowning_face:"
+                    className="emoji"
+                />
+                <h1 style={{color: isThemeDark ? 'white' : ''}}>
+                    {searchResultError.title}
+                </h1>
+                <p>
+                    {searchResultError.message}
+                    {searchResultError.resolution}
+                </p>
+            </div>
+        )
+    }
 
   return (
     <div className="main-dictionary-container" style={{fontFamily: font}}>
@@ -81,6 +115,14 @@ function App() {
                 </span>
             }
         </form>
+        <>
+            {searchResult && Array.isArray(searchResult) ?
+                renderResultSuccess()
+                :
+                searchResult && typeof searchResult === 'object' &&
+                renderResultError()
+            }
+        </>
     </div>
   );
 }
