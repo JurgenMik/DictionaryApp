@@ -5,6 +5,7 @@ import {handleGetDictionaryResponse} from "./services/dictionaryService";
 import {AxiosError} from 'axios';
 import Emoji from 'react-emoji-render';
 import MenuBar from "./components/MenuBar/MenuBar";
+import DictionaryResponse from './components/DictionaryResponse/DictionaryResponse';
 
 type SearchErrorType = {
     title: string,
@@ -63,7 +64,12 @@ function App() {
 
     const renderResultSuccess = () => {
         return (
-            <div className="result-success"></div>
+            <div className="d-flex flex-column result-success">
+                <DictionaryResponse
+                    result={searchResult}
+                    isThemeDark={isThemeDark}
+                />
+            </div>
         )
     }
 
