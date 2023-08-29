@@ -22,4 +22,68 @@
       }
     }
   }
+  .word-response-container {
+    margin-top: 1.5rem;
+    #word-category {
+      font-style: italic;
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .word-meaning-container {
+      h1 {
+        font-size: 1.05rem;
+        color: $DarkGray;
+        margin-bottom: 1rem;
+      }
+      ul {
+        list-style-type: none;
+        li {
+          margin-top: 0.75rem;
+          &::before {
+            content: "\2022";
+            color: $DarkPurple;
+            font-weight: bold;
+            display: inline-block;
+            width: 1rem;
+            margin-left: -1rem;
+          }
+        }
+      }
+    }
+    .word-synonym {
+      height: 5rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+      p {
+        color: $DarkPurple;
+        font-weight: bold;
+        flex-wrap: wrap;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .word-source {
+    height: 2rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid $DarkishGray;
+    gap: 1rem;
+    h1 {
+      font-size: 0.85rem;
+      color: $DarkGray;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: $Black;
+      #link {
+        color: $DarkGray;
+      }
+    }
+  }
 }

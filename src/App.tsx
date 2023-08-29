@@ -3,6 +3,7 @@ import './App.scss';
 import {BiSearch} from 'react-icons/bi';
 import {handleGetDictionaryResponse} from "./services/dictionaryService";
 import {AxiosError} from 'axios';
+import {themeBasedTextStyle} from "./utils";
 import Emoji from 'react-emoji-render';
 import MenuBar from "./components/MenuBar/MenuBar";
 import DictionaryResponse from './components/DictionaryResponse/DictionaryResponse';
@@ -81,7 +82,7 @@ function App() {
                     text=":slightly_frowning_face:"
                     className="emoji"
                 />
-                <h1 style={{color: isThemeDark ? 'white' : ''}}>
+                <h1 style={themeBasedTextStyle(isThemeDark)}>
                     {searchResultError.title}
                 </h1>
                 <p>
